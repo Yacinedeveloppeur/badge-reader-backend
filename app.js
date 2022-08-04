@@ -1,8 +1,15 @@
 //import express package
 const express = require("express");
+//import database configuration
+require("./models/dbConfig");
+//import model to create a badge
+const BadgeTime = require("./models/badgeTime");
 
 //create express app
 const app = express();
+
+//to extract json body request
+app.use(express.json());
 
 //middlewares to handle requests
 
@@ -20,17 +27,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/timers", (req, res, next) => {
-  const timers = [
-    {
-      _id: "afzfojofz",
-      enter: "8h",
-      lunchBreak: "12h",
-      endLunchBreak: "13h",
-      exit: "17h",
-    },
-  ];
-  res.status(200).json(timers);
+//generate timer
+
+app.post("/api/badge-time", (req, res, next) => {
+  delete req.body._id;
+  const badgeTime = new BadgeTime({
+    userId: req.body.userId
+  })
+  badgeTime.save()
+    .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
+    .catch(() => { res.status(401).json({error})})
+});
+
+app.get("/api/badge-time", (req, res, next) => {
+  BadgeTime.find()
+    .then((badgeTimes) => { res.status(200).json(badgeTimes)})
+    .catch((error) => { res.status(400).json({error})})
 });
 
 //export app
