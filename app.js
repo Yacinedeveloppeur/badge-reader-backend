@@ -32,11 +32,11 @@ app.use((req, res, next) => {
 app.post("/api/badge-time", (req, res, next) => {
   delete req.body._id;
   const badgeTime = new BadgeTime({
-    userId: req.body.userId
+    userId: req.body.userId,
   })
   badgeTime.save()
-    .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
-    .catch(() => { res.status(401).json({error})})
+    .then(() => { res.status(201).json({message: 'Badgage enregistré'}), console.log('OK')})
+    .catch((error) => { res.status(401).json({error}), console.log(error)})
 });
 
 app.get("/api/badge-time", (req, res, next) => {
