@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//generate timer
+//generate badge-time
 
 app.post("/api/badge-time", (req, res, next) => {
   delete req.body._id;
@@ -39,11 +39,19 @@ app.post("/api/badge-time", (req, res, next) => {
     .catch((error) => { res.status(401).json({error}), console.log(error)})
 });
 
+//get badge-times
 app.get("/api/badge-time", (req, res, next) => {
   BadgeTime.find()
     .then((badgeTimes) => { res.status(200).json(badgeTimes)})
     .catch((error) => { res.status(400).json({error})})
 });
+
+//get one badge-time
+app.get("/api/badge-time/:id", (req, res, next) => {
+  BadgeTime.findOne({_id: req.params.id})
+  .then((badgeTime) => {res.status(200).json(badgeTime)})
+  .catch((error)=> {res.status(404).json({ error })})
+})
 
 //export app
 module.exports = app;
