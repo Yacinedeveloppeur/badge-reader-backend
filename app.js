@@ -1,17 +1,13 @@
-//import express package
 const express = require("express");
-//import database configuration
 require("./models/dbConfig");
-//import model to create a badge
 const BadgeTime = require("./models/badgeTime");
 
-//create express app
 const app = express();
+
+// MIDDLEWARES
 
 //to extract json body request
 app.use(express.json());
-
-//middlewares to handle requests
 
 //alowed Cross Origin requests
 app.use((req, res, next) => {
@@ -28,7 +24,6 @@ app.use((req, res, next) => {
 });
 
 //generate badge-time
-
 app.post("/api/badge-time", (req, res, next) => {
   delete req.body._id;
   const badgeTime = new BadgeTime({
@@ -53,5 +48,5 @@ app.get("/api/badge-time/:id", (req, res, next) => {
   .catch((error)=> {res.status(404).json({ error })})
 })
 
-//export app
+
 module.exports = app;
