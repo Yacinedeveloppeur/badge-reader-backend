@@ -4,7 +4,7 @@ const moment = require("moment");
 
 function generateFormatedDate() {
   moment.locale('fr');
-  return moment().format('LLLL'); // 'Freitag, 24. Juni 2016 01:42'
+  return moment().format('YYYY-MM-DD HH:mm:ss')
 };
 
 
