@@ -48,6 +48,11 @@ app.get("/api/badge-time/:id", (req, res, next) => {
   .catch((error)=> {res.status(404).json({ error })})
 })
 
-
+//update badge-time
+app.put("/api/badge-time/:id", (req, res, next) => {
+  BadgeTime.updateOne({ _id: req.params.id},  { ...req.body, _id: req.params.id })
+    .then(()=>{res.status(200).json({message: 'badgage modifié !'})})
+    .catch((error)=> { res.status(400).json({error})})
+})
 
 module.exports = app;
