@@ -30,7 +30,7 @@ app.post("/api/badge-time", (req, res, next) => {
     userId: req.body.userId,
   })
   badgeTime.save()
-    .then(() => { res.status(201).json({message: 'Badgage enregistré'}), console.log('OK')})
+    .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
     .catch((error) => { res.status(401).json({error}), console.log(error)})
 });
 
@@ -53,6 +53,12 @@ app.put("/api/badge-time/:id", (req, res, next) => {
   BadgeTime.updateOne({ _id: req.params.id},  { ...req.body, _id: req.params.id })
     .then(()=>{res.status(200).json({message: 'badgage modifié !'})})
     .catch((error)=> { res.status(400).json({error})})
+})
+
+app.delete("/api/badge-time/:id", (req, res, next) => {
+  BadgeTime.deleteOne({_id: req.params.id})
+  .then(()=>{res.status(200).json({ message: 'Badgage supprimé !'})})
+  .catch(()=>{res.status(400).json({ error })})
 })
 
 module.exports = app;
