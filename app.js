@@ -2,6 +2,7 @@ const express = require("express");
 require("./models/dbConfig");
 
 const badgeTimeRoutes = require("./routes/badgeTime")
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 //use router
-app.use('/api/badge-time', badgeTimeRoutes)
+app.use('/api/badge-time', badgeTimeRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
