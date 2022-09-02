@@ -1,5 +1,6 @@
 const BadgeTime = require('../models/badgeTime');
 
+
 exports.createBadgeTime = (req, res, next) => {
     delete req.body._id;
     const badgeTime = new BadgeTime({
