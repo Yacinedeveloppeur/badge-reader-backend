@@ -35,17 +35,11 @@ exports.login = (req, res, next) => {
                         randomTokenSecret,
                         { expiresIn: '24h' } 
                     )
-                    //return cookie with access_token
-                    res.cookie('access_token',
-                    accessToken, {
-                        httpOnly: true,
-                        secure: true,
-                        maxAge: 24 * 60 * 60
-                    })
                     //return userId + xsrfToken
                     res.status(200).json({
                         userId: user._id,
-                        xsrfToken: accessToken
+                        xsrfToken: accessToken,
+                        message: 'Connexion réussie'
                     });
                 })
                 .catch(error => res.status(500).json({ error }))

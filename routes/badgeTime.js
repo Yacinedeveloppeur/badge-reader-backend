@@ -6,9 +6,9 @@ const auth = require('../middlewares/auth')
 const badgeTimeCtrl = require('../controllers/badgeTime');
 
 router.post("/", auth, badgeTimeCtrl.createBadgeTime);
-router.get("/", badgeTimeCtrl.getAllBadgeTimes);
-router.get("/:id", badgeTimeCtrl.getOneBadgeTime);
-router.put("/:id", badgeTimeCtrl.updateBadgeTime);
-router.delete("/:id", badgeTimeCtrl.deleteBadgeTime);
+router.get("/",  auth, badgeTimeCtrl.getAllBadgeTimes);
+router.get("/:id", auth, badgeTimeCtrl.getOneBadgeTime);
+router.put("/:id", auth, badgeTimeCtrl.updateBadgeTime);
+router.delete("/:id", auth, badgeTimeCtrl.deleteBadgeTime);
 
 module.exports = router;

@@ -1,6 +1,9 @@
 const express = require("express");
 require("./models/dbConfig");
 
+
+const cors = require("cors");
+
 const badgeTimeRoutes = require("./routes/badgeTime")
 const userRoutes = require("./routes/user");
 
@@ -11,19 +14,15 @@ const app = express();
 //to extract json body request
 app.use(express.json());
 
-//alowed Cross Origin requests
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, x-xsrf-token"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
+// //alowed Cross Origin requests
+
+const corsOptions ={
+   origin:true, 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 //use router
 app.use('/api/badge-time', badgeTimeRoutes);
