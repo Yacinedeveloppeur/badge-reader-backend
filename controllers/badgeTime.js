@@ -4,7 +4,8 @@ const BadgeTime = require('../models/badgeTime');
 exports.createBadgeTime = (req, res, next) => {
     delete req.body._id;
     const badgeTime = new BadgeTime({
-      userId: req.body.userId,
+      userId: req.auth.userId,
+      userEmail: req.auth.userEmail
     })
     badgeTime.save()
       .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
@@ -12,8 +13,9 @@ exports.createBadgeTime = (req, res, next) => {
   };
 
 exports.getAllBadgeTimes = (req, res, next) => {
-    BadgeTime.find()
-      .then((badgeTimes) => { res.status(200).json(badgeTimes)})
+  console.log(req.auth.userId);
+    BadgeTime.find({userId: req.auth.userId})
+      .then((badgeTimes) => { res.status(200).json(badgeTimes); console.log(badgeTimes);})
       .catch((error) => { res.status(400).json({error})})
   };
 

@@ -31,13 +31,14 @@ exports.login = (req, res, next) => {
                     }
                     //create a token
                     const accessToken = jwt.sign(
-                        { userId: user._id },
+                        { userId: user._id, userEmail: user.email },
                         randomTokenSecret,
                         { expiresIn: '24h' } 
                     )
                     //return userId + xsrfToken
                     res.status(200).json({
                         userId: user._id,
+                        userEmail: user.email,
                         xsrfToken: accessToken,
                         message: 'Connexion réussie'
                     });
