@@ -13,9 +13,8 @@ exports.createBadgeTime = (req, res, next) => {
   };
 
 exports.getAllBadgeTimes = (req, res, next) => {
-  console.log(req.auth.userId);
     BadgeTime.find({userId: req.auth.userId})
-      .then((badgeTimes) => { res.status(200).json(badgeTimes); console.log(badgeTimes);})
+      .then((badgeTimes) => { res.status(200).json(badgeTimes)})
       .catch((error) => { res.status(400).json({error})})
   };
 
