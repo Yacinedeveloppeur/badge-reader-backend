@@ -1,11 +1,21 @@
 const BadgeTime = require('../models/badgeTime');
+//import moment to format date
+const moment = require("moment");
+
+
+function generateFormatedDate() {
+  moment.locale('fr');
+  return moment().format('YYYY-MM-DD HH:mm:ss')
+};
 
 
 exports.createBadgeTime = (req, res, next) => {
     delete req.body._id;
+    let formatedDate = generateFormatedDate();
     const badgeTime = new BadgeTime({
       userId: req.auth.userId,
-      userEmail: req.auth.userEmail
+      userEmail: req.auth.userEmail,
+      badgeTime: formatedDate
     })
     badgeTime.save()
       .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
