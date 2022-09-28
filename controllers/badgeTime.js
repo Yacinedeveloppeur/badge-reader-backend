@@ -10,7 +10,6 @@ function generateFormatedDate() {
 
 
 exports.createBadgeTime = (req, res, next) => {
-    delete req.body._id;
     let formatedDate = generateFormatedDate();
     const badgeTime = new BadgeTime({
       userId: req.auth.userId,
@@ -19,7 +18,7 @@ exports.createBadgeTime = (req, res, next) => {
     })
     badgeTime.save()
       .then(() => { res.status(201).json({message: 'Badgage enregistré'})})
-      .catch((error) => { res.status(401).json({error}), console.log(error)})
+      .catch((error) => { res.status(401).json({error})})
   };
 
 exports.getAllBadgeTimes = (req, res, next) => {
@@ -35,7 +34,7 @@ exports.getAllBadgeTimes = (req, res, next) => {
   };
 
   exports.updateBadgeTime = (req, res, next) => {
-    BadgeTime.updateOne({ _id: req.params.id},  { ...req.body, _id: req.params.id })
+    BadgeTime.updateOne({ _id: req.params.id},  { ...req.body, _id: req.params.id, userId: req.auth.userId, userEmail: req.auth.userEmail})
       .then(()=>{res.status(200).json({message: 'badgage modifié !'})})
       .catch((error)=> { res.status(400).json({error})})
   };
@@ -43,6 +42,6 @@ exports.getAllBadgeTimes = (req, res, next) => {
   exports.deleteBadgeTime = (req, res, next) => {
     BadgeTime.deleteOne({_id: req.params.id})
     .then(()=>{res.status(200).json({ message: 'Badgage supprimé !'})})
-    .catch(()=>{res.status(400).json({ error })})
+    .catch((error)=>{res.status(400).json({ error })})
   };
 
