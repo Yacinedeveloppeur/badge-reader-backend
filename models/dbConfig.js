@@ -4,7 +4,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 
 //connect to database
 mongoose
-  .connect(`mongodb+srv://maxpower:maxpower994@cluster0.cvvqvz2.mongodb.net/?retryWrites=true&w=majority`, {
+  .connect(`mongodb+srv://maxpower:${DB_PASSWORD}@cluster0.cvvqvz2.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
