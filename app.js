@@ -24,6 +24,17 @@ const corsOptions ={
 
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
+
+app.get('/', (req, res, next) => {
+   res.status(200).json({
+       status: 'success',
+       data: {
+           name: 'Badge-Reader API',
+           version: '0.1.0'
+       }
+   });
+});
+
 //use router
 app.use('/api/badge-time', badgeTimeRoutes);
 app.use('/api/auth', userRoutes);
