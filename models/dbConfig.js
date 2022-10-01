@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //connect to database
 mongoose
-  .connect(process.env.DB_URL || "mongodb+srv://maxpower:maxpower994@cluster0.cvvqvz2.mongodb.net/?retryWrites=true&w=majority", {
+  .connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
