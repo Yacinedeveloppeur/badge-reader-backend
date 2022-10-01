@@ -12,5 +12,6 @@ mongoose
     console.log("Connexion à MongoDB réussie !");
   })
   .catch(() => {
+    alert('error')
     console.log("Connexion à MongoDB échouée !");
   });
