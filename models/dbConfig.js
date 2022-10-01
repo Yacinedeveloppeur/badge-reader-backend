@@ -1,10 +1,9 @@
 //import mongoose package
 const mongoose = require("mongoose");
-const DB_URL = process.env.DB_URL;
 
 //connect to database
 mongoose
-  .connect(DB_URL, {
+  .connect(process.env.DB_URL || "mongodb+srv://maxpower:maxpower994@cluster0.cvvqvz2.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
