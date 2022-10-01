@@ -17,7 +17,7 @@ app.use(express.json());
 // //alowed Cross Origin requests
 
 const corsOptions ={
-   origin:'http://localhost:8080/', 
+   origin:'http://localhost', 
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200,
 }
