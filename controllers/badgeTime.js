@@ -1,14 +1,14 @@
 const BadgeTime = require('../models/badgeTime');
 //import moment to format date
 const moment = require("moment");
-
+const momentTimezone = require("moment-timezone");
 
 let dateFr ='';
 
 function generateFormatedDate() {
   moment.locale('fr');
   let date = moment();
-  dateFr = date.tz('Europe/Paris')
+  dateFr = momentTimezone.tz(date, 'YYYY-MM-DD HH:mm:ss', 'Europe/Paris')
   return dateFr.format('YYYY-MM-DD HH:mm:ss')
 };
 
