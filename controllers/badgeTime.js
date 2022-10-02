@@ -4,7 +4,7 @@ const moment = require("moment");
 
 function generateFormatedDate() {
   moment.locale('fr');
-  return moment().format('YYYY-MM-DD HH:mm:ss')
+  return moment.utc(moment()).format('YYYY-MM-DD HH:mm:ss')
 };
 
 
