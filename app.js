@@ -14,11 +14,12 @@ const app = express();
 //to extract json body request
 app.use(express.json());
 
-// //alowed Cross Origin requests
+// alowed Cross Origin requests for my frontend application.
+// if you want use this API with your frontend application replace this origin value by your frontend application address.
 
 const corsOptions ={
    origin:'http://localhost:8080', 
-   credentials:true,            //access-control-allow-credentials:true
+   credentials:true,            
    optionSuccessStatus:200,
 }
 
