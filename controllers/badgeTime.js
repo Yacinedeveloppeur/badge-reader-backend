@@ -8,8 +8,9 @@ let momentdateTz = '';
 function generateFormatedDate() {
   moment.locale('fr');
   const timezone = 'Europe/Paris';
-  const date = moment().format('YYYY-MM-DD HH:mm:ss')
-  momentdateTz = momentTz.tz(date,'YYYY-MM-DD HH:mm', timezone)
+  const date = moment();
+  momentdateTz = momentTz.tz(date, timezone);
+  momentdateTz.format('YYYY-MM-DD HH:mm:ss');
   return momentdateTz;
 };
 
