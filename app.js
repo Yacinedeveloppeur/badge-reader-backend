@@ -18,7 +18,7 @@ app.use(express.json());
 // if you want use this API with your frontend application replace this origin value by your frontend application address.
 
 const corsOptions ={
-   origin:'http://localhost:8080', 
+   origin:'https://6339f6fdc893db28637fb51d--benevolent-puffpuff-085317.netlify.app', 
    credentials:true,            
    optionSuccessStatus:200,
 }
